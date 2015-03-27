@@ -1,2 +1,5 @@
 # Count sequence lengths
 zcat seq.fastq.gz | awk 'NR % 4 == 2 {count[length()]++}; END {for (i in count) {print i "\t" count[i]}}' | sort -n -k 1,1
+
+# Filter single fastq by length
+zcat seq.fastq.gz | awk 'BEGIN {OFS = "\n"} {header = $0 ; getline seq ; getline qheader ; getline qseq ; if (length(seq) >= 70) {print header, seq, qheader, qseq}}' | wc -l
