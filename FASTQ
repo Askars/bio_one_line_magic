@@ -1,2 +1,2 @@
 # Count sequence lengths
-zcat seq.fastq.gz | awk 'NR % 4 == 2 {count[length()]++}; END {for (i in count) {print i, "\t", count[i]}}' | sort -n -k 1,1
+zcat seq.fastq.gz | awk 'NR % 4 == 2 {count[length()]++}; END {for (i in count) {print i "\t" count[i]}}' | sort -n -k 1,1
