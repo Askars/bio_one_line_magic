@@ -1,0 +1,8 @@
+# vlookup target_file target_col map_file map_key_col map_target_col
+vlookup () {
+    awk -v target_col=$2 -v map_key_col=$4 -v map_target_col=$5 'BEGIN{OFS="\t"};FNR==NR{
+                    a[$map_key_col] = $map_target_col
+                    next
+                }
+                { if ($target_col in a) {$target_col=a[$target_col]} else {$target_col="-"}; print $0}' $3 $1
+}
