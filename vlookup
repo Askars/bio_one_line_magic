@@ -1,6 +1,6 @@
 # vlookup target_file target_key_col target_col map_file map_key_col map_target_col
 vlookup () {
-    awk -v target_key_col=$2 -v target_col=$3 -v map_key_col=$5 -v map_target_col=$6 '
+    awk -F '\t' -v target_key_col=$2 -v target_col=$3 -v map_key_col=$5 -v map_target_col=$6 '
         BEGIN{OFS="\t"};FNR==NR{
             a[$map_key_col] = $map_target_col
             next
