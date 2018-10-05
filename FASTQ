@@ -3,3 +3,11 @@ zcat seq.fastq.gz | awk 'NR % 4 == 2 {count[length()]++}; END {for (i in count) 
 
 # Filter single fastq by length
 zcat seq.fastq.gz | awk 'BEGIN {OFS = "\n"} {header = $0 ; getline seq ; getline qheader ; getline qseq ; if (length(seq) >= 70) {print header, seq, qheader, qseq}}' | wc -l
+
+# Estimate GZIP FASTQ (Illumina)
+# Filesize -> Bases = 1:1.8 (for first read), 1:1.6 (for second read)
+# e.g. 4GB file approx 7.2Gbases
+
+# Compression ratio 
+# Compressed -> Uncompressed = 1:5 (for first read), 1:4 (for second read)
+# e.g 4GB file approx 20GB uncompressed
