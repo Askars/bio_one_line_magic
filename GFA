@@ -1,0 +1,2 @@
+# GFA to Fastq
+awk -F"\t" '/^S/ && $3 ~ /[ACGT]/ {print ">"$2"\n"$3}' in.gfa > out.fasta
