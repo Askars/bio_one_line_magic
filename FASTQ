@@ -1,3 +1,6 @@
+# Count bases in a FASTQ
+zcat seq.fastq.gz | awk 'NR % 4 == 2 {printf "%s", $0}' | wc -c
+
 # Count sequence lengths
 zcat seq.fastq.gz | awk 'NR % 4 == 2 {count[length()]++}; END {for (i in count) {print i "\t" count[i]}}' | sort -n -k 1,1
 
